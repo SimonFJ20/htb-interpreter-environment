@@ -2,14 +2,17 @@ from sys import argv
 import basic
 
 def run_text(text: str, filename: str, print_res: bool = True):
-    result, error = basic.run(filename, text)
+    try:
+        result, error = basic.run(filename, text)
 
-    if error: print(error.as_string())
-    elif result and print_res:
-        if len(result.elements) == 1:
-            print(repr(result.elements[0]))
-        else:
-            print(repr(result))
+        if error: print(error.as_string())
+        elif result and print_res:
+            if len(result.elements) == 1:
+                print(repr(result.elements[0]))
+            else:
+                print(repr(result))
+    except KeyboardInterrupt:
+        return None
 
 def repl():
     while True:
