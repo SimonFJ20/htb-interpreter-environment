@@ -1,9 +1,9 @@
 from sys import argv
-import basic
+from htb_interpreter import evaluate
 
 def run_text(text: str, filename: str, print_res: bool = True):
     try:
-        result, error = basic.run(filename, text)
+        result, error = evaluate(filename, text)
 
         if error: print(error.as_string())
         elif result and print_res:
