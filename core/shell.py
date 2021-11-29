@@ -36,6 +36,4 @@ if __name__ == '__main__':
         if text.strip() == '':
             print(f"Empty file '{filepath}'")
             exit(1)
-        # filename = filepath[filepath.rfind('/')+1:]
-        # print(filename)
         run_text(text, filepath, False)
