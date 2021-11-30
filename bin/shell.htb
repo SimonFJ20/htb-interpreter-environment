@@ -1,5 +1,5 @@
 
-run("lib/strings.htb")
+import("lib/strings.htb")
 import("lib/lists.htb")
 
 func exists(list, value)
