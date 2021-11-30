@@ -592,7 +592,7 @@ class BuiltInFunction(BaseFunction):
                 exec_ctx
             ))
         
-        _, error = evaluate(fn, script)
+        result, error = evaluate(fn, script)
 
         if error:
             return RTResult().failure(RTError(
@@ -600,6 +600,9 @@ class BuiltInFunction(BaseFunction):
                 f'Failed to finish executing script "{fn}"\n' + error.as_string(),
                 exec_ctx
             ))
+
+        for v in result.elements[:-1]:
+            exec_ctx.parent.symbol_table.set(v.name, v)
 
         return RTResult().success(Number.null)
     execute_run.arg_names = ['fn']
