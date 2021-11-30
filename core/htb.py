@@ -39,4 +39,5 @@ if __name__ == '__main__':
         if text.strip() == '':
             print(f"Empty file '{filepath}'")
             exit(1)
-        run_text(text, filepath, False)
+        print_res = '-s' in argv or '--status' in argv
+        run_text(text, filepath, print_res)
