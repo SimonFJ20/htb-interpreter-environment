@@ -392,6 +392,11 @@ class BuiltInFunction(BaseFunction):
     ########################
 
     def execute_print(self, exec_ctx):
+        print(str(exec_ctx.symbol_table.get('value')), end='')
+        return RTResult().success(Number.null)
+    execute_print.arg_names = ['value']
+
+    def execute_println(self, exec_ctx):
         print(str(exec_ctx.symbol_table.get('value')))
         return RTResult().success(Number.null)
     execute_print.arg_names = ['value']
@@ -551,6 +556,7 @@ class BuiltInFunction(BaseFunction):
     execute_run.arg_names = ['fn']
 
 BuiltInFunction.print       = BuiltInFunction("print")
+BuiltInFunction.println     = BuiltInFunction("println")
 BuiltInFunction.input       = BuiltInFunction("input")
 BuiltInFunction.input_int   = BuiltInFunction("input_int")
 BuiltInFunction.clear       = BuiltInFunction("clear")
@@ -828,6 +834,7 @@ def global_symbol_table() -> SymbolTable:
     table.set('true', Number.true)
     table.set('mathPi', Number.math_pi)
     table.set('print', BuiltInFunction.print)
+    table.set('println', BuiltInFunction.println)
     table.set('input', BuiltInFunction.input)
     table.set('inputInt', BuiltInFunction.input_int)
     table.set('clear', BuiltInFunction.clear)
